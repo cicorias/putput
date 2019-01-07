@@ -1,7 +1,7 @@
 import sys
 import unittest
 
-from putput.utterance_creator import create_utterance_and_tokens
+from putput.utterance_creator import create_utterances_and_tokens
 
 
 class TestUtteranceCreator(unittest.TestCase):
@@ -13,12 +13,12 @@ class TestUtteranceCreator(unittest.TestCase):
     def test_solo_static_without_combinations(self) -> None:
         utterance_pattern = [[[['kanye west', 'the beatles']]]]
         utterance_pattern_tokens = ['ARTIST']
-        actual_utterances, actual_tokens = create_utterance_and_tokens(utterance_pattern,
-                                                                       utterance_pattern_tokens,
-                                                                       self._max_sample_size,
-                                                                       self._max_retries,
-                                                                       self._seed,
-                                                                       self._token_handlers)
+        actual_utterances, actual_tokens = create_utterances_and_tokens(utterance_pattern,
+                                                                        utterance_pattern_tokens,
+                                                                        self._max_sample_size,
+                                                                        self._max_retries,
+                                                                        self._seed,
+                                                                        self._token_handlers)
         expected_utterances = ['kanye west', 'the beatles']
         expected_tokens = ['[ARTIST]'] * 2
         for utterance, tokens in zip(expected_utterances, expected_tokens):
@@ -32,12 +32,12 @@ class TestUtteranceCreator(unittest.TestCase):
         playlist_token_patterns = [[['slow', 'fast'], ['songs', 'jams']]]
         utterance_pattern = [play_token_patterns, playlist_token_patterns]
         utterance_pattern_tokens = ['PLAY', 'PLAYLIST']
-        actual_utterances, actual_tokens = create_utterance_and_tokens(utterance_pattern,
-                                                                       utterance_pattern_tokens,
-                                                                       self._max_sample_size,
-                                                                       self._max_retries,
-                                                                       self._seed,
-                                                                       self._token_handlers)
+        actual_utterances, actual_tokens = create_utterances_and_tokens(utterance_pattern,
+                                                                        utterance_pattern_tokens,
+                                                                        self._max_sample_size,
+                                                                        self._max_retries,
+                                                                        self._seed,
+                                                                        self._token_handlers)
         expected_utterances = [
             'he would listen to fast jams', 'i would listen to fast jams', 'start playing fast songs',
             'he will play slow jams', 'play slow jams', 'i would play fast songs', 'i will play slow songs',
@@ -62,12 +62,12 @@ class TestUtteranceCreator(unittest.TestCase):
     def test_solo_dynamic_without_combinations(self) -> None:
         utterance_pattern = [[[['bose', 'jambox', 'echo']]]]
         utterance_pattern_tokens = ['SPEAKER']
-        actual_utterances, actual_tokens = create_utterance_and_tokens(utterance_pattern,
-                                                                       utterance_pattern_tokens,
-                                                                       self._max_sample_size,
-                                                                       self._max_retries,
-                                                                       self._seed,
-                                                                       self._token_handlers)
+        actual_utterances, actual_tokens = create_utterances_and_tokens(utterance_pattern,
+                                                                        utterance_pattern_tokens,
+                                                                        self._max_sample_size,
+                                                                        self._max_retries,
+                                                                        self._seed,
+                                                                        self._token_handlers)
         expected_utterances = ['bose', 'jambox', 'echo']
         expected_tokens = ['[BOSE(id=1)]', '[JAMBOX(id=1)]', '[ECHO(id=1)]']
         for utterance, tokens in zip(expected_utterances, expected_tokens):

@@ -2,7 +2,7 @@ import os
 import sys
 
 from putput.input_processor import generate_utterance_pattern_and_tokens
-from putput.utterance_creator import create_utterance_and_tokens
+from putput.utterance_creator import create_utterances_and_tokens
 
 
 def _wake_handler(tokenized_phrase: str) -> str:
@@ -28,12 +28,13 @@ def main() -> None:
         "ACTION": _action_handler
     }
     for utterance_pattern, tokens in generate_utterance_pattern_and_tokens(input_fname, dynamic_token_patterns_dict):
-        utterance, tokens = create_utterance_and_tokens(utterance_pattern,
-                                                        tokens,
-                                                        sys.maxsize,
-                                                        sys.maxsize,
-                                                        0,
-                                                        token_handlers)
+        import pdb; pdb.set_trace()
+        utterance, tokens = create_utterances_and_tokens(utterance_pattern,
+                                                         tokens,
+                                                         sys.maxsize,
+                                                         sys.maxsize,
+                                                         0,
+                                                         token_handlers)
         print("utterance: ", utterance)
         print("tokens: ", tokens)
 
